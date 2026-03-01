@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KiKi – Hỗ Trợ Nghiên Cứu Khoa Học</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <span class="logo-icon">🔬</span>
+        <span class="logo-text">KiKi Research</span>
+      </div>
+      <nav class="main-nav">
+        <a href="#search-section" class="nav-link active" data-section="search">Tìm Kiếm</a>
+        <a href="#notes-section" class="nav-link" data-section="notes">Ghi Chú</a>
+        <a href="#citation-section" class="nav-link" data-section="citation">Trích Dẫn</a>
+        <a href="#topics-section" class="nav-link" data-section="topics">Chủ Đề</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1 class="hero-title">Hỗ Trợ Nghiên Cứu Khoa Học</h1>
+      <p class="hero-subtitle">Tìm kiếm bài báo, quản lý ghi chú, tạo trích dẫn và khám phá các chủ đề khoa học – tất cả trong một nơi.</p>
+      <div class="quick-search-bar">
+        <input id="hero-search-input" type="text" placeholder="Tìm kiếm bài báo khoa học (ví dụ: machine learning, CRISPR)..." />
+        <button id="hero-search-btn" class="btn-primary">Tìm Kiếm</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAIN ===== -->
+  <main class="container main-content">
+
+    <!-- Search Section -->
+    <section id="search-section" class="section active-section">
+      <h2 class="section-title">🔍 Tìm Kiếm Bài Báo</h2>
+      <div class="search-controls">
+        <input id="search-input" type="text" class="search-input" placeholder="Nhập từ khóa..." />
+        <select id="search-category" class="search-select">
+          <option value="all">Tất cả lĩnh vực</option>
+          <option value="cs">Khoa học máy tính</option>
+          <option value="physics">Vật lý</option>
+          <option value="math">Toán học</option>
+          <option value="bio">Sinh học</option>
+          <option value="econ">Kinh tế</option>
+          <option value="stat">Thống kê</option>
+          <option value="eess">Kỹ thuật điện</option>
+          <option value="q-bio">Sinh học định lượng</option>
+        </select>
+        <button id="search-btn" class="btn-primary">Tìm</button>
+      </div>
+      <div id="search-status" class="search-status"></div>
+      <div id="search-results" class="results-grid"></div>
+      <div id="search-pagination" class="pagination"></div>
+    </section>
+
+    <!-- Notes Section -->
+    <section id="notes-section" class="section">
+      <h2 class="section-title">📝 Ghi Chú Nghiên Cứu</h2>
+      <div class="notes-layout">
+        <div class="notes-editor">
+          <input id="note-title" type="text" class="note-title-input" placeholder="Tiêu đề ghi chú..." />
+          <textarea id="note-content" class="note-textarea" placeholder="Nội dung ghi chú...&#10;&#10;Ghi chú của bạn về bài báo, thí nghiệm, hoặc ý tưởng nghiên cứu sẽ được lưu ngay trên trình duyệt này."></textarea>
+          <div class="notes-actions">
+            <select id="note-category" class="search-select">
+              <option value="general">Chung</option>
+              <option value="paper">Bài báo</option>
+              <option value="idea">Ý tưởng</option>
+              <option value="experiment">Thí nghiệm</option>
+              <option value="reference">Tài liệu tham khảo</option>
+            </select>
+            <button id="save-note-btn" class="btn-primary">Lưu Ghi Chú</button>
+            <button id="clear-note-btn" class="btn-secondary">Xóa trắng</button>
+          </div>
+        </div>
+        <div class="notes-list-panel">
+          <div class="notes-list-header">
+            <span>Ghi chú đã lưu</span>
+            <input id="notes-search" type="text" placeholder="Lọc ghi chú..." class="notes-filter-input" />
+          </div>
+          <div id="notes-list" class="notes-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Citation Section -->
+    <section id="citation-section" class="section">
+      <h2 class="section-title">📚 Tạo Trích Dẫn</h2>
+      <div class="citation-layout">
+        <div class="citation-form">
+          <h3>Nhập thông tin bài báo</h3>
+          <div class="form-group">
+            <label>Tiêu đề bài báo *</label>
+            <input id="cite-title" type="text" class="form-input" placeholder="Tiêu đề bài báo" />
+          </div>
+          <div class="form-group">
+            <label>Tác giả (phân cách bằng dấu phẩy) *</label>
+            <input id="cite-authors" type="text" class="form-input" placeholder="Nguyễn Văn A, Trần Thị B" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Năm xuất bản *</label>
+              <input id="cite-year" type="number" class="form-input" placeholder="2024" min="1000" max="2099" />
+            </div>
+            <div class="form-group">
+              <label>Tạp chí / Hội nghị</label>
+              <input id="cite-journal" type="text" class="form-input" placeholder="Nature, IEEE, NeurIPS..." />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Tập (Volume)</label>
+              <input id="cite-volume" type="text" class="form-input" placeholder="42" />
+            </div>
+            <div class="form-group">
+              <label>Số trang</label>
+              <input id="cite-pages" type="text" class="form-input" placeholder="100-115" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>DOI / URL</label>
+            <input id="cite-doi" type="text" class="form-input" placeholder="https://doi.org/10.xxxx/xxxxx" />
+          </div>
+          <div class="form-group">
+            <label>Định dạng trích dẫn</label>
+            <select id="cite-format" class="search-select">
+              <option value="apa">APA (7th ed.)</option>
+              <option value="mla">MLA (9th ed.)</option>
+              <option value="chicago">Chicago</option>
+              <option value="ieee">IEEE</option>
+              <option value="bibtex">BibTeX</option>
+            </select>
+          </div>
+          <button id="generate-citation-btn" class="btn-primary">Tạo Trích Dẫn</button>
+        </div>
+        <div class="citation-output-panel">
+          <h3>Kết quả trích dẫn</h3>
+          <div id="citation-output" class="citation-output">
+            <p class="placeholder-text">Điền thông tin bài báo và nhấn "Tạo Trích Dẫn" để xem kết quả.</p>
+          </div>
+          <button id="copy-citation-btn" class="btn-secondary" style="display:none">📋 Sao chép</button>
+          <div class="saved-citations-header">
+            <span>Trích dẫn đã lưu</span>
+            <button id="clear-citations-btn" class="btn-danger-sm">Xóa tất cả</button>
+          </div>
+          <div id="saved-citations" class="saved-citations-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Topics Section -->
+    <section id="topics-section" class="section">
+      <h2 class="section-title">🧪 Khám Phá Chủ Đề Khoa Học</h2>
+      <div class="topics-grid">
+        <div class="topic-card" data-query="artificial intelligence deep learning">
+          <div class="topic-icon">🤖</div>
+          <h3>Trí Tuệ Nhân Tạo</h3>
+          <p>Machine learning, deep learning, neural networks, NLP, computer vision.</p>
+          <button class="btn-topic">Khám phá</button>
+        </div>
+        <div class="topic-card" data-query="quantum computing quantum physics">
+          <div class="topic-icon">⚛️</div>
+          <h3>Vật Lý Lượng Tử</h3>
+          <p>Quantum computing, quantum entanglement, quantum algorithms.</p>
+          <button class="btn-topic">Khám phá</button>
+        </div>
+        <div class="topic-card" data-query="CRISPR gene editing genomics">
+          <div class="topic-icon">🧬</div>
+          <h3>Sinh Học Phân Tử</h3>
+          <p>Genomics, CRISPR, proteomics, bioinformatics.</p>
+          <button class="btn-topic">Khám phá</button>
+        </div>
+        <div class="topic-card" data-query="climate change renewable energy">
+          <div class="topic-icon">🌍</div>
+          <h3>Khoa Học Khí Hậu</h3>
+          <p>Climate change, renewable energy, environmental science.</p>
+          <button class="btn-topic">Khám phá</button>
+        </div>
+        <div class="topic-card" data-query="nanotechnology materials science">
+          <div class="topic-icon">🔩</div>
+          <h3>Khoa Học Vật Liệu</h3>
+          <p>Nanotechnology, superconductors, metamaterials.</p>
+          <button class="btn-topic">Khám phá</button>
+        </div>
+        <div class="topic-card" data-query="drug discovery pharmacology medicine">
+          <div class="topic-icon">💊</div>
+          <h3>Y Học & Dược Học</h3>
+          <p>Drug discovery, clinical trials, precision medicine.</p>
+          <button class="btn-topic">Khám phá</button>
+        </div>
+        <div class="topic-card" data-query="robotics automation control systems">
+          <div class="topic-icon">🦾</div>
+          <h3>Robotics</h3>
+          <p>Autonomous systems, robot learning, human-robot interaction.</p>
+          <button class="btn-topic">Khám phá</button>
+        </div>
+        <div class="topic-card" data-query="cybersecurity network security privacy">
+          <div class="topic-icon">🔐</div>
+          <h3>An Ninh Mạng</h3>
+          <p>Cryptography, network security, privacy-preserving computing.</p>
+          <button class="btn-topic">Khám phá</button>
+        </div>
+        <div class="topic-card" data-query="mathematics topology algebra analysis">
+          <div class="topic-icon">📐</div>
+          <h3>Toán Học</h3>
+          <p>Pure & applied mathematics, topology, number theory.</p>
+          <button class="btn-topic">Khám phá</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>KiKi Research – Hỗ trợ nghiên cứu khoa học &copy; 2025</p>
+      <p class="footer-note">Dữ liệu bài báo từ <a href="https://arxiv.org" target="_blank" rel="noopener">arXiv.org</a> (open-access). Ghi chú được lưu cục bộ trên trình duyệt.</p>
+    </div>
+  </footer>
+
+  <!-- ===== TOAST NOTIFICATION ===== -->
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
